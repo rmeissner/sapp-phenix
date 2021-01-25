@@ -1,7 +1,7 @@
 {
-  "short_name": "Safe App",
-  "name": "Gnosis Safe App Starter",
-  "description": "Describe your Safe App here",
+  "short_name": "Phenix",
+  "name": "Safe Phenix",
+  "description": "Make your Safe rise from the ashes - Setup rescue accounts to recover access to your Safe",
   "iconPath": "logo.svg",
   "icons": [
     {

@@ -1,10 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Button, Loader, Title } from '@gnosis.pm/safe-react-components';
+import { Loader } from '@gnosis.pm/safe-react-components';
 import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
 import { ethers } from 'ethers';
 import DelayedTxModule from './contracts/DelayedTxModule.json'
+import Safe from './contracts/Safe1_1_1.json'
 import { SafeAppsSdkProvider } from './safe/provider'
+import Rebirth from './components/rebirth';
+import Dashboard from './components/dashboard';
 
 const Container = styled.form`
   margin-bottom: 2rem;
@@ -19,70 +22,37 @@ const Container = styled.form`
 
 const App: React.FC = () => {
   const { sdk, safe } = useSafeAppsSDK();
-  const [submitting, setSubmitting] = useState(false);
-  const [moduleName, setModuleName] = useState("");
+  const [selectedTab, setSelectedTab] = useState("dashboard");
   const module = useMemo(() => {
     console.log("create module")
     return new ethers.Contract(DelayedTxModule.address, DelayedTxModule.abi, new SafeAppsSdkProvider(safe, sdk));
   }, [sdk, safe])
 
-  useEffect(() => {
-    console.log("load module name")
-    const loader = async () => {
-      try {
-        setModuleName(await module.NAME())
-      } catch (e) {
-        console.error(e)
-        setModuleName("errored")
-      }
-    };
-    loader();
-  }, [module])
+  const manager = useMemo(() => {
+    console.log("create manager " + safe.safeAddress)
+    if (!safe.safeAddress) return undefined
+    return new ethers.Contract(safe.safeAddress, Safe.abi, new SafeAppsSdkProvider(safe, sdk));
+  }, [sdk, safe])
 
-  const submitTx = useCallback(async () => {
-    setSubmitting(true);
-    try {
-      const { safeTxHash } = await sdk.txs.send({
-        txs: [
-          {
-            to: safe.safeAddress,
-            value: '0',
-            data: '0x',
-          },
-        ],
-      });
-      console.log({ safeTxHash });
-      const safeTx = await sdk.txs.getBySafeTxHash(safeTxHash);
-      console.log({ safeTx });
-    } catch (e) {
-      console.error(e);
+  const section = useMemo(() => {
+    if (!manager) return <></>
+    switch (selectedTab) {
+      case "rebirth":
+        return <Rebirth module={module} manager={manager} />
+      case "dashboard":
+      default:
+        return <Dashboard module={module} manager={manager} />
     }
-    setSubmitting(false);
-  }, [safe, sdk]);
+  }, [selectedTab, module, manager])
+
+  if (!manager) return (
+    <Loader size="md" />
+  )
 
   return (
     <Container>
-      <Title size="md">Interact with {moduleName}</Title>
-      <Title size="md">{safe.safeAddress}</Title>
-      {submitting ? (
-        <>
-          <Loader size="md" />
-          <br />
-          <Button
-            size="lg"
-            color="secondary"
-            onClick={() => {
-              setSubmitting(false);
-            }}
-          >
-            Cancel
-          </Button>
-        </>
-      ) : (
-        <Button size="lg" color="primary" onClick={submitTx}>
-          Submit
-        </Button>
-      )}
+      <div><a href="/#" onClick={() => setSelectedTab("dashboard")}>Dashboard</a> <a href="/#" onClick={() => setSelectedTab("rebirth")}>Rebirth</a></div>
+      {section}
     </Container>
   );
 };
