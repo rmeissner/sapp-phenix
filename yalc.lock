@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@gnosis.pm/safe-apps-ethers-provider": {
+      "signature": "454e2b64315950380e4840c7404c8b92",
+      "file": true
+    }
+  }
+}
