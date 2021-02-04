@@ -1485,6 +1485,31 @@
     bech32 "1.1.4"
     ws "7.2.3"
 
+"@ethersproject/providers@^5.0.19":
+  version "5.0.21"
+  resolved "https://registry.yarnpkg.com/@ethersproject/providers/-/providers-5.0.21.tgz#04e6b7734637a82ea4df22ef49311f419fc5e3bd"
+  integrity sha512-KyH9TylyLqspbO/2C0ph+0ZpOnb/2GkKQtpcs7IyHZ/wHXdhbClLeaBdO0b4Fpo6zAZWjgIdN6WUOMGkyy7b6A==
+  dependencies:
+    "@ethersproject/abstract-provider" "^5.0.8"
+    "@ethersproject/abstract-signer" "^5.0.10"
+    "@ethersproject/address" "^5.0.9"
+    "@ethersproject/basex" "^5.0.7"
+    "@ethersproject/bignumber" "^5.0.13"
+    "@ethersproject/bytes" "^5.0.9"
+    "@ethersproject/constants" "^5.0.8"
+    "@ethersproject/hash" "^5.0.10"
+    "@ethersproject/logger" "^5.0.8"
+    "@ethersproject/networks" "^5.0.7"
+    "@ethersproject/properties" "^5.0.7"
+    "@ethersproject/random" "^5.0.7"
+    "@ethersproject/rlp" "^5.0.7"
+    "@ethersproject/sha2" "^5.0.7"
+    "@ethersproject/strings" "^5.0.8"
+    "@ethersproject/transactions" "^5.0.9"
+    "@ethersproject/web" "^5.0.12"
+    bech32 "1.1.4"
+    ws "7.2.3"
+
 "@ethersproject/random@5.0.7", "@ethersproject/random@^5.0.7":
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/@ethersproject/random/-/random-5.0.7.tgz#e364268ce68bf6d300c36d654e622fd9d26b3a86"
@@ -1607,6 +1632,17 @@
     "@ethersproject/properties" "^5.0.7"
     "@ethersproject/strings" "^5.0.8"
 
+"@gnosis.pm/safe-apps-ethers-provider@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-ethers-provider/-/safe-apps-ethers-provider-1.0.0-beta.0.tgz#98c8cc8d6a8c1daecea5539ca1095053378a2555"
+  integrity sha512-Buk8B53DJXNTIdyTq2Mvc9Dq8b0wtd0wmB8EeTuAXDayfWfr7en9DW0DqUcSSKqEsnVVJE857ROILV7WacrDyg==
+  dependencies:
+    "@ethersproject/bytes" "^5.0.9"
+    "@ethersproject/logger" "^5.0.8"
+    "@ethersproject/properties" "^5.0.7"
+    "@ethersproject/providers" "^5.0.19"
+    "@gnosis.pm/safe-apps-sdk" "^1.0.3"
+
 "@gnosis.pm/safe-apps-react-sdk@1.0.0-beta.1":
   version "1.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-react-sdk/-/safe-apps-react-sdk-1.0.0-beta.1.tgz#f6f6cc9116f7607950b7a183b7babd29be3880d1"
@@ -1619,6 +1655,14 @@
   version "1.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-1.0.0-beta.5.tgz#3dbd901c222b3ff2173e21f7daea92d8e88cf4b1"
   integrity sha512-Cp2QPXaWEKi0ZVXSxWWv4eEF/PBRIbqFJitnkvTOtpSPV4ES3ftzzsv4lRIS5o1i6xuMOZej89an+XRxwC3+Gw==
+  dependencies:
+    semver "^7.3.2"
+    web3-core "^1.3.0"
+
+"@gnosis.pm/safe-apps-sdk@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-1.0.3.tgz#006d709700419302af490f6beaac67b1db4b36fb"
+  integrity sha512-77c6lg4SfCbQtMjgB2vVPKQglUCOjSpwweNeoD4m0c5hnd5lFg0Dlcc45LwtcUL8j5XhDf+aBxT8LDD+XGDSNw==
   dependencies:
     semver "^7.3.2"
     web3-core "^1.3.0"

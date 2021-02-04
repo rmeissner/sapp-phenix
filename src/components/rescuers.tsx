@@ -105,7 +105,7 @@ const Rescuers: React.FC<Props> = ({ module, enabled }) => {
     {(enabled && <div><TextField value={newRescuer} label="New Rescuer" onChange={(e) => setNewRescuer(e.target.value)}></TextField><Button size="md" color="primary" onClick={addRescuer}>Add</Button></div>)}
     {rescuers === undefined && "loading..."}
     {rescuers?.length === 0 && "No rescuers"}
-    {rescuers?.map(rescuer => <div>{rescuer.announcer} ({numberZoHHMMSS(rescuer.delay.toNumber())} delay)<Button size="md" color="primary" onClick={() => removeRescuer(rescuer.announcer)}>Remove</Button></div>)}
+    {rescuers?.map(rescuer => <div key={rescuer.announcer}>{rescuer.announcer} ({numberZoHHMMSS(rescuer.delay.toNumber())} delay)<Button size="md" color="primary" onClick={() => removeRescuer(rescuer.announcer)}>Remove</Button></div>)}
   </>
   )
 }

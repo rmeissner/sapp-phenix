@@ -5,7 +5,7 @@ import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
 import { ethers } from 'ethers';
 import DelayedTxModule from './contracts/DelayedTxModule.json'
 import Safe from './contracts/Safe1_1_1.json'
-import { SafeAppsSdkProvider } from './safe/provider'
+import { SafeAppsSdkProvider } from '@gnosis.pm/safe-apps-ethers-provider'
 import Rebirth from './components/rebirth';
 import Dashboard from './components/dashboard';
 
