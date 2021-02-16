@@ -29,7 +29,7 @@ interface Announcement {
 }
 
 const Rebirth: React.FC<Props> = ({ manager, module }) => {
-  const { sdk, safe } = useSafeAppsSDK();
+  const { safe } = useSafeAppsSDK();
   const [breeding, setBreeding] = useState(false);
   const [phenixes, setPhenixes] = useState<Config[] | undefined>(undefined);
   const [hetchlings, setHetchlings] = useState<Announcement[] | undefined>(undefined);
@@ -187,7 +187,7 @@ const Rebirth: React.FC<Props> = ({ manager, module }) => {
         console.error(e);
       }
     },
-    [sdk, safe, manager, module],
+    [module],
   );
 
   const now = new Date().getTime() / 1000;
