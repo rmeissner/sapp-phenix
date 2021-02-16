@@ -2520,7 +2520,7 @@
     "@ethersproject/transactions" "^5.0.9"
     "@ethersproject/wordlists" "^5.0.8"
 
-"@ethersproject/web@5.0.13", "@ethersproject/web@^5.0.13":
+"@ethersproject/web@5.0.13":
   version "5.0.13"
   resolved "https://registry.yarnpkg.com/@ethersproject/web/-/web-5.0.13.tgz#5a92ac6d835d2ebce95b6b645a86668736e2f532"
   integrity sha512-G3x/Ns7pQm21ALnWLbdBI5XkW/jrsbXXffI9hKNPHqf59mTxHYtlNiSwxdoTSwCef3Hn7uvGZpaSgTyxs7IufQ==
@@ -2564,8 +2564,10 @@
     "@ethersproject/properties" "^5.0.7"
     "@ethersproject/strings" "^5.0.8"
 
-"@gnosis.pm/safe-apps-ethers-provider@file:.yalc/@gnosis.pm/safe-apps-ethers-provider":
-  version "0.1.0"
+"@gnosis.pm/safe-apps-ethers-provider@0.1.0-beta.0":
+  version "0.1.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-ethers-provider/-/safe-apps-ethers-provider-0.1.0-beta.0.tgz#f4e5ac6f2bc822b80cb1aeeb31d6511c1dd20858"
+  integrity sha512-w5h/ufyL9XA2sD5ipPdGoiZZcFRuCf7puOlkhpq5CD95YnEzfFt0B7DNbB4s4IN2IFcNcE4dzAB4b/U7wX/Qtw==
   dependencies:
     "@ethersproject/abstract-provider" "^5.0.9"
     "@ethersproject/abstract-signer" "^5.0.12"
@@ -2574,7 +2576,6 @@
     "@ethersproject/logger" "^5.0.9"
     "@ethersproject/properties" "^5.0.8"
     "@ethersproject/providers" "^5.0.22"
-    "@ethersproject/web" "^5.0.13"
     "@gnosis.pm/safe-apps-sdk" "2.0.0-beta.0"
 
 "@gnosis.pm/safe-apps-react-sdk@1.1.1":
