@@ -23,16 +23,19 @@ const Container = styled.form`
 const App: React.FC = () => {
   const { sdk, safe } = useSafeAppsSDK();
   const [selectedTab, setSelectedTab] = useState('dashboard');
+
+  const signer = useMemo(() => new SafeAppsSdkSigner(safe, sdk), [sdk, safe]);
+
   const module = useMemo(() => {
     console.log('create module');
-    return new ethers.Contract(DelayedTxModule.address, DelayedTxModule.abi, new SafeAppsSdkSigner(safe, sdk));
-  }, [sdk, safe]);
+    return new ethers.Contract(DelayedTxModule.address, DelayedTxModule.abi, signer);
+  }, [signer]);
 
   const manager = useMemo(() => {
     console.log('create manager ' + safe.safeAddress);
     if (!safe.safeAddress) return undefined;
-    return new ethers.Contract(safe.safeAddress, Safe.abi, new SafeAppsSdkSigner(safe, sdk));
-  }, [sdk, safe]);
+    return new ethers.Contract(safe.safeAddress, Safe.abi, signer);
+  }, [signer]);
 
   const section = useMemo(() => {
     if (!manager) return <></>;
