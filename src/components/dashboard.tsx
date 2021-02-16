@@ -39,9 +39,7 @@ const Dashboard: React.FC<Props> = ({ module, manager }) => {
 
   const enableModule = useCallback(async () => {
     try {
-      const response = await manager.enableModule(module.address);
-
-      console.log({ response });
+      await manager.enableModule(module.address);
     } catch (e) {
       console.error(e);
     }
