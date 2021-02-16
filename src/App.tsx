@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Loader } from '@gnosis.pm/safe-react-components';
 import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
 import { ethers } from 'ethers';
-import DelayedTxModule from './contracts/DelayedTxModule.json'
-import Safe from './contracts/Safe1_1_1.json'
-import { SafeAppsSdkProvider } from '@gnosis.pm/safe-apps-ethers-provider'
+import DelayedTxModule from './contracts/DelayedTxModule.json';
+import Safe from './contracts/Safe1_1_1.json';
+import { SafeAppsSdkSigner } from '@gnosis.pm/safe-apps-ethers-provider';
 import Rebirth from './components/rebirth';
 import Dashboard from './components/dashboard';
 
@@ -22,36 +22,41 @@ const Container = styled.form`
 
 const App: React.FC = () => {
   const { sdk, safe } = useSafeAppsSDK();
-  const [selectedTab, setSelectedTab] = useState("dashboard");
+  const [selectedTab, setSelectedTab] = useState('dashboard');
   const module = useMemo(() => {
-    console.log("create module")
-    return new ethers.Contract(DelayedTxModule.address, DelayedTxModule.abi, new SafeAppsSdkProvider(safe, sdk));
-  }, [sdk, safe])
+    console.log('create module');
+    return new ethers.Contract(DelayedTxModule.address, DelayedTxModule.abi, new SafeAppsSdkSigner(safe, sdk));
+  }, [sdk, safe]);
 
   const manager = useMemo(() => {
-    console.log("create manager " + safe.safeAddress)
-    if (!safe.safeAddress) return undefined
-    return new ethers.Contract(safe.safeAddress, Safe.abi, new SafeAppsSdkProvider(safe, sdk));
-  }, [sdk, safe])
+    console.log('create manager ' + safe.safeAddress);
+    if (!safe.safeAddress) return undefined;
+    return new ethers.Contract(safe.safeAddress, Safe.abi, new SafeAppsSdkSigner(safe, sdk));
+  }, [sdk, safe]);
 
   const section = useMemo(() => {
-    if (!manager) return <></>
+    if (!manager) return <></>;
     switch (selectedTab) {
-      case "rebirth":
-        return <Rebirth module={module} manager={manager} />
-      case "dashboard":
+      case 'rebirth':
+        return <Rebirth module={module} manager={manager} />;
+      case 'dashboard':
       default:
-        return <Dashboard module={module} manager={manager} />
+        return <Dashboard module={module} manager={manager} />;
     }
-  }, [selectedTab, module, manager])
+  }, [selectedTab, module, manager]);
 
-  if (!manager) return (
-    <Loader size="md" />
-  )
+  if (!manager) return <Loader size="md" />;
 
   return (
     <Container>
-      <div><a href="/#" onClick={() => setSelectedTab("dashboard")}>Dashboard</a> <a href="/#" onClick={() => setSelectedTab("rebirth")}>Rebirth</a></div>
+      <div>
+        <a href="/#" onClick={() => setSelectedTab('dashboard')}>
+          Dashboard
+        </a>{' '}
+        <a href="/#" onClick={() => setSelectedTab('rebirth')}>
+          Rebirth
+        </a>
+      </div>
       {section}
     </Container>
   );
