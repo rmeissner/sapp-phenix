@@ -8,7 +8,7 @@ interface Props {
   module: Contract;
 }
 
-const Dashboard: React.FC<Props> = ({ module, manager }) => {
+const Dashboard = ({ module, manager }: Props): React.ReactElement => {
   const [moduleStatus, setModuleStatus] = useState({ label: 'loading...', showEnableButton: false });
   const [moduleName, setModuleName] = useState('loading...');
 
