@@ -2,10 +2,10 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Loader } from '@gnosis.pm/safe-react-components';
 import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
+import { SafeAppProvider } from '@gnosis.pm/safe-apps-provider';
 import { ethers } from 'ethers';
 import DelayedTxModule from './contracts/DelayedTxModule.json';
 import Safe from './contracts/Safe1_1_1.json';
-import { SafeAppsSdkSigner } from '@gnosis.pm/safe-apps-ethers-provider';
 import Rebirth from './components/rebirth';
 import Dashboard from './components/dashboard';
 
@@ -24,7 +24,10 @@ const App: React.FC = () => {
   const { sdk, safe } = useSafeAppsSDK();
   const [selectedTab, setSelectedTab] = useState('dashboard');
 
-  const signer = useMemo(() => new SafeAppsSdkSigner(safe, sdk), [sdk, safe]);
+  const signer = useMemo(() => new ethers.providers.Web3Provider(new SafeAppProvider(safe, sdk)).getSigner(), [
+    sdk,
+    safe,
+  ]);
 
   const module = useMemo(() => {
     console.log('create module');
@@ -35,7 +38,7 @@ const App: React.FC = () => {
     console.log('create manager ' + safe.safeAddress);
     if (!safe.safeAddress) return undefined;
     return new ethers.Contract(safe.safeAddress, Safe.abi, signer);
-  }, [signer]);
+  }, [signer, safe.safeAddress]);
 
   const section = useMemo(() => {
     if (!manager) return <></>;
